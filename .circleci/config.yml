@@ -11,9 +11,9 @@ jobs:
           name: "Building"
           command: "echo 'Building'"
       - run: |
-        echo "Repo Name: " $CIRCLE_PROJECT_REPONAME
-        echo "Branch: " $CIRCLE_BRANCH
-        echo "Tag: " $CIRCLE_TAG
+          echo "Repo Name: " $CIRCLE_PROJECT_REPONAME
+          echo "Branch: " $CIRCLE_BRANCH
+          echo "Tag: " $CIRCLE_TAG
   test:
     docker:
       - image: cimg/base:current
