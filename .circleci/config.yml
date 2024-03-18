@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: "Building"
-          command: "apk add R"
+          command: "apt update -y"
       - run: echo $CIRCLE_BRANCH
       - run: echo $CIRCLE_PROJECT_REPONAME
       - run: echo $CIRCLE_TAG
