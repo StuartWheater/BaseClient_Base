@@ -10,9 +10,9 @@ jobs:
       - run:
           name: "Building"
           command: "apk add R"
-      - run echo $CIRCLE_BRANCH
-      - run echo $CIRCLE_PROJECT_REPONAME
-      - run echo $CIRCLE_TAG
+      - run: echo $CIRCLE_BRANCH
+      - run: echo $CIRCLE_PROJECT_REPONAME
+      - run: echo $CIRCLE_TAG
   test:
     docker:
       - image: cimg/base:current
