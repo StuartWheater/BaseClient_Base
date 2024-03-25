@@ -6,26 +6,16 @@ jobs:
       - image: cimg/base:current
     resource_class: small
     steps:
-      - checkout
-      - run:
-          name: "Building"
-          command: "echo 'Building'"
       - run: |
-          echo "Repo Name: " $CIRCLE_PROJECT_REPONAME
-          echo "Branch: " $CIRCLE_BRANCH
-          echo "Tag: " $CIRCLE_TAG
-  test:
-    docker:
-      - image: cimg/base:current
-    resource_class: small
-    steps:
-      - checkout
-      - run:
-          name: "Testing"
-          command: "echo 'Testing'"
-
+          echo "Building"
+          echo "  Repo Name: " $CIRCLE_PROJECT_REPONAME
+          echo "  Branch:    " $CIRCLE_BRANCH
+          echo "  Tag:       " $CIRCLE_TAG
+      - run: |
+          sudo apt update -y
+          sudo apt upgrade -y
+          sudo apt install r-base -y
 workflows:
   datashield_ci:
     jobs:
       - build
-      - test
