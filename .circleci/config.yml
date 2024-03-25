@@ -31,6 +31,7 @@ jobs:
           sudo R -q -e "install.packages(c('DSI','DSOpal','DSLite'), dependencies=TRUE, repos='https://cloud.r-project.org')"
           sudo R -q -e "install.packages(c('MolgenisAuth', 'MolgenisArmadillo', 'DSMolgenisArmadillo'), dependencies=TRUE, repos='https://cloud.r-project.org')"
           sudo R -q -e "install.packages(c('DescTools','e1071'), dependencies=TRUE, repos='https://cloud.r-project.org')"
+          sudo R -q -e "install.packages(c('mvtnorm', 'expm', 'Exact', 'gld', dependencies=TRUE, repos='https://cloud.r-project.org')"
 
           sudo R -q -e "library('devtools'); devtools::install_github(repo='datashield/dsDangerClient', ref='v6.3.0-dev', dependencies = TRUE)"
 
