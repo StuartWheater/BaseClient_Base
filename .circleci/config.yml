@@ -12,6 +12,7 @@ jobs:
           echo "  Branch:    " $CIRCLE_BRANCH
           echo "  Tag:       " $CIRCLE_TAG
       - run: |
+          sudo add-apt-repository "dep https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
           sudo apt update -y
           sudo apt upgrade -y
           sudo apt install r-base -y
