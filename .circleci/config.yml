@@ -24,8 +24,8 @@ jobs:
           sudo apt install --no-install-recommends r-base -y
       - run: |
           # Install R environment
-          sudo apt-get install -qq libxml2-dev libcurl4-openssl-dev libssl-dev libgsl-dev libgit2-dev r-base -y
-          sudo apt-get install -qq libharfbuzz-dev libfribidi-dev -y
+          sudo apt install libxml2-dev libcurl4-openssl-dev libssl-dev libgsl-dev libgit2-dev r-base -y
+          sudo apt install libharfbuzz-dev libfribidi-dev -y
           sudo R -q -e "install.packages(c('devtools','covr'), dependencies=TRUE, repos='https://cloud.r-project.org')"
           sudo R -q -e "install.packages(c('fields','meta','metafor','ggplot2','gridExtra','data.table','panelaggregation'), dependencies=TRUE, repos='https://cloud.r-project.org')"
           sudo R -q -e "install.packages(c('DSI','DSOpal','DSLite'), dependencies=TRUE, repos='https://cloud.r-project.org')"
@@ -34,8 +34,8 @@ jobs:
 
           sudo R -q -e "library('devtools'); devtools::install_github(repo='datashield/dsDangerClient', ref='v6.3.0-dev', dependencies = TRUE)"
 
-      # XML grep for coverage report merging
-          sudo apt-get install -qq xml-twig-tools -y
+          # XML grep for coverage report merging
+          sudo apt install xml-twig-tools -y
 workflows:
   datashield_ci:
     jobs:
