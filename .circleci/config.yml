@@ -6,6 +6,8 @@ jobs:
       - image: cimg/base:current
     resource_class: small
     steps:
+      - setup_remote_docker:
+          docker_layout_caching: true
       - run: |
           echo "Building"
           echo "  Repo Name: " $CIRCLE_PROJECT_REPONAME
