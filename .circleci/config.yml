@@ -39,6 +39,9 @@ jobs:
 
           # XML grep for coverage report merging
           sudo apt install xml-twig-tools -y
+      - run: |
+          # Install R environment
+          sudo docker push datashield/app:$CIRCLE_BRANCH
 workflows:
   datashield_ci:
     jobs:
