@@ -1,11 +1,12 @@
 version: 2.1
 
 jobs:
-  build:
+  dsclient:
     docker:
       - image: cimg/base:current
     resource_class: small
     steps:
+      - checkout
       - setup_remote_docker:
           docker_layout_caching: true
       - run: |
@@ -14,37 +15,11 @@ jobs:
           echo "  Branch:    " $CIRCLE_BRANCH
           echo "  Tag:       " $CIRCLE_TAG
       - run: |
-          # Add "R" repo
-          sudo apt update -y
-          sudo apt upgrade -y
-          wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/r-project.gpg
-          echo "deb [signed-by=/usr/share/keyrings/r-project.gpg] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" | sudo tee -a /etc/apt/sources.list.d/r-project.list
-          sudo apt update -y
-      - run: |
-          # Install R
-          sudo apt upgrade -y
-          sudo apt install --no-install-recommends r-base -y
-      - run: |
-          # Install R environment
-          sudo apt install cmake gfortran -y
-          sudo apt install libxml2-dev libcurl4-openssl-dev libssl-dev libgsl-dev libgit2-dev r-base -y
-          sudo apt install libharfbuzz-dev libfribidi-dev libfontconfig1-dev -y
-          sudo apt install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev -y
-          # sudo R -q -e "install.packages(c('devtools','covr'), dependencies=TRUE, repos='https://cloud.r-project.org')"
-          # sudo R -q -e "install.packages(c('fields','meta','metafor','ggplot2','gridExtra','data.table','panelaggregation'), dependencies=TRUE, repos='https://cloud.r-project.org')"
-          # sudo R -q -e "install.packages(c('DSI','DSOpal','DSLite'), dependencies=TRUE, repos='https://cloud.r-project.org')"
-          # sudo R -q -e "install.packages(c('MolgenisAuth', 'MolgenisArmadillo', 'DSMolgenisArmadillo'), dependencies=TRUE, repos='https://cloud.r-project.org')"
-          # sudo R -q -e "install.packages(c('DescTools','e1071'), dependencies=TRUE, repos='https://cloud.r-project.org')"
-          # sudo R -q -e "install.packages(c('mvtnorm', 'expm', 'Exact', 'gld'), dependencies=TRUE, repos='https://cloud.r-project.org')"
-
-          # sudo R -q -e "library('devtools'); devtools::install_github(repo='datashield/dsDangerClient', ref='v6.3.0-dev', dependencies = TRUE)"
-
-          # XML grep for coverage report merging
-          # sudo apt install xml-twig-tools -y
-      - run: |
-          # Install R environment
-          sudo docker push datashield/app:$CIRCLE_BRANCH
+          TAG=1.0.$CIRCLE_BUILD_NUM
+          docker build -t datashield/circleci-dsclient-base:$TAG --file dsClient_Dockerfile .
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push datashield/app:$CIRCLE_BRANCH
 workflows:
-  datashield_ci:
+  dsclient:
     jobs:
       - build
