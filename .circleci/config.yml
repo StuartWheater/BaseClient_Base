@@ -20,6 +20,6 @@ jobs:
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push datashield/app:$CIRCLE_BRANCH
 workflows:
-  dsclient:
+  build:
     jobs:
-      - build
+      - dsclient
