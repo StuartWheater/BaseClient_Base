@@ -23,6 +23,3 @@ RUN sudo R -q -e "library('devtools'); devtools::install_github(repo='datashield
 
 # XML grep for coverage report merging
 RUN sudo apt-get install xml-twig-tools -y
-
-# Install R environment
-RUN sudo docker push datashield/app:$CIRCLE_BRANCH
