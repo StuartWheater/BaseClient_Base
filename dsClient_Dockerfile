@@ -10,7 +10,7 @@ RUN sudo apt-get install --no-install-recommends r-base -y
 
 RUN sudo apt-get install cmake gfortran -y
 RUN sudo apt-get install libxml2-dev libcurl4-openssl-dev libssl-dev libgsl-dev libgit2-dev r-base -y
-RUN sudo apt-get install libharfbuzz-dev libfribidi-dev libfontconfig1-dev -y
+RUN sudo apt-get install libharfbuzz-dev libfribidi-dev libmagick++-dev libfontconfig1-dev -y
 RUN sudo apt-get install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev -y
 RUN sudo R -q -e "install.packages(c('devtools','covr'), dependencies=TRUE, repos='https://cloud.r-project.org')"
 RUN sudo R -q -e "install.packages(c('fields','meta','metafor','ggplot2','gridExtra','data.table','panelaggregation'), dependencies=TRUE, repos='https://cloud.r-project.org')"
