@@ -25,7 +25,6 @@ jobs:
           command: |
             TAG=1.0.$CIRCLE_BUILD_NUM
             docker build -t datashield/baseclient-base:$TAG --file BaseClient_Dockerfile .
-            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
             docker push datashield/baseclient-base:$TAG
 workflows:
   build:
